@@ -2,36 +2,32 @@ name: Build macOS App
 
 on:
   push:
-    branches: [ main ]  # Trigger when pushing to master
+    branches: [ main ]  # Trigger only on main branch pushes
 
 jobs:
   build:
-    runs-on: macos-latest  # Tells GitHub to use a Mac VM
+    runs-on: macos-latest  # Use macOS runner
 
     steps:
-    - name: 📤 Upload .app as artifact
-      uses: actions/upload-artifact@v4   #  ← change v3 ➜ v4
-      with:
-        name: MacApp
-        path: dist/*.app
-  
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
 
     - name: 🐍 Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.10'  # Use Python 3.10
+        python-version: '3.10'
 
     - name: 📦 Install dependencies
       run: |
         python3 -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: 🔨 Build macOS app
+    - name: 🔨 Build macOS app using py2app
       run: |
-        python3 setup.py py2app  # Build using py2app
+        python3 setup.py py2app
 
     - name: 📤 Upload .app as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MacApp
-        path: dist/*.app  # Upload the generated .app
+        path: dist/*.app
