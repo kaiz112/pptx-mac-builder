@@ -2,7 +2,7 @@ name: Build macOS App
 
 on:
   push:
-    branches: [ master ]  # Trigger when pushing to master
+    branches: [ main ]  # Trigger when pushing to master
 
 jobs:
   build:
