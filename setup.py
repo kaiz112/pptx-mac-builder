@@ -1,6 +1,6 @@
 from setuptools import setup
 
-APP = ['PPT_text_4.2.py']
+APP = ['pptx_tool_gui.py']
 DATA_FILES = []
 OPTIONS = {
     'argv_emulation': True,
