@@ -15,4 +15,3 @@ setup(
     setup_requires=['py2app'],
 )
  
-aadd
